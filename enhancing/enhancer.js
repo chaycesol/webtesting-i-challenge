@@ -12,12 +12,17 @@ module.exports = {
 // };
 
 function success(item) {
-  return { ...item };
-  // accepts item and returns new item modified 
-  //- The item's enhancement increases by 1.
-// - If the item enhancement level is 20, the enhancement level is not changed.
-// - The durability of the item is not changed.
-}
+    // accepts item and returns new item modified 
+  if (!item.enhancement) {
+    return { message: "item unable to be enhanced" };
+  } else if (item.enhancement === 20) {
+    // - If the item enhancement level is 20, the enhancement level is not changed.
+    return {...item}
+  } else {
+      //- The item's enhancement increases by 1, The durability of the item is not changed.
+    return { ...item, enhancement: item.enhancement + 1 };
+  };
+};
 
 function fail(item) {
   //accepts item and returns new item obj modified by rules
@@ -46,7 +51,6 @@ function fail(item) {
 }
   
 function repair(item) {
-
   // accepts item and returns new item with XP 100 again
   if(!item.durability) {
     return { message: "your item has no durability!"}

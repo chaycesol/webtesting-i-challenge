@@ -48,9 +48,44 @@ describe("Item Enhancers", function() {
         })
       });
       describe('item success', function() {
-          it.todo("The item's enhancement increases by 1.");
-          it.todo("If the item enhancement level is 20, the enhancement level is not changed.");
-          it.todo("The durability of the item is not changed.");
+        it("should let the user know that enhancements aren't available on this weapon", function() {
+            const item = {
+                name: "sword",
+                durability: 80
+            }
+
+            const expected = { message: 'item unable to be enhanced'}
+            const actual = enhancer.success(item)
+            expect(actual).toStrictEqual(expected)
+        });
+        it("should increase enhancement level by 1 only if successful- durability remains unchanged", function() {
+            const item = {
+                name: "sword",
+                durability: 80,
+                enhancement: 17
+            }
+            const expected = {
+                name: "sword",
+                durability: 80,
+                enhancement: 18
+            }
+            const actual = enhancer.success(item)
+            expect(actual).toStrictEqual(expected)
+        })
+          it("should not change the item if enhancement is at 20", function () {
+            const item = {
+                name: "sword",
+                durability: 80,
+                enhancement: 20
+            }
+            const expected = {
+                name: "sword",
+                durability: 80,
+                enhancement: 20
+            };
+            const actual = enhancer.success(item)
+            expect(actual).toStrictEqual(expected)
+          }) 
       });
       describe('item fail', function() {
         it("should let the user know that enhancements aren't available on this weapon", function() {
