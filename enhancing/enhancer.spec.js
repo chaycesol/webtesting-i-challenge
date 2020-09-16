@@ -5,12 +5,12 @@ describe("Item Enhancers", function() {
     describe("item repair", function () {
         it("should repair an actual item", function () {
           const item = {
-            name: "fist weapon",
+            name: "first weapon",
             durability: 50,
             enhancement: 15,
           };
           const expected = {
-            name: "fist weapon",
+            name: "first weapon",
             durability: 100,
             enhancement: 15,
           };
@@ -28,7 +28,7 @@ describe("Item Enhancers", function() {
         });
         it("should return a message you item has max durability", function() {
             const item = {
-                name: "Mace",
+                name: "Sword",
                 durability: 100,
                 enhancement: 15
             }
