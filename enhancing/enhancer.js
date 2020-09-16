@@ -20,30 +20,31 @@ function success(item) {
 }
 
 function fail(item) {
-
   //accepts item and returns new item obj modified by rules
-  if(!item.enhancement) {
-    return { message: 'item unable to be enhanced'}
-  } else if(item.enhancement < 15) {
+  if (!item.enhancement) {
+    return { message: "item unable to be enhanced" };
+  } else if (item.enhancement < 15) {
     // - If the item's enhancement is less than 15, the durability of the item is decreased by 5.
-    return {...item, durability: item.durability - 5};
+    return { ...item, durability: item.durability - 5 };
+  } else if (item.enhancement === 15) {
+    // - If the item's enhancement is less than 15, the durability of the item is decreased by 5.
+    return { ...item, durability: item.durability - 10 };
   } else if (item.enhancement === 20) {
-    return item; 
+    // if Item is at MAX enhancement, nothing happens
+    return item;
   } else {
-    // - If the item's enhancement level is greater than 16, the enhancement level decreases by 1 (17 goes down to 16, 18 goes down to 17).
-    if(item.enhancement > 16) {
-      return{
+    //  - If the item's enhancement is 15 or more, the durability of the item is decreased by 10. 
+    //- If the item's enhancement level is greater than 16, the enhancement level decreases by 1 (17 goes down to 16, 18 goes down to 17).
+    if (item.enhancement > 16) {
+      return {
         ...item,
-        durabiilty: item.durability -10,
-        enhancement: item.enhancement - 1, 
+        durability: item.durability - 10,
+        enhancement: item.enhancement - 1,
       };
     }
-      // - If the item's enhancement is 15 or more, the durability of the item is decreased by 10.
-    return {...item, durability: item.durability - 10 };
   }
-
 }
-
+  
 function repair(item) {
 
   // accepts item and returns new item with XP 100 again

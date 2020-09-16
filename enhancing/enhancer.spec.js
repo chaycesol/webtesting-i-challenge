@@ -89,7 +89,20 @@ describe("Item Enhancers", function() {
             }
             const actual = enhancer.fail(item)
             expect(actual).toStrictEqual(expected)
-        })
-        it.todo("If the item's enhancement level is greater than 16, the enhancement level decreases by 1 (17 goes down to 16, 18 goes down to 17).");
+        });
+        it('should decrease enhancement by one and durability goes down by 10', function() {
+            const item = {
+                name: "sword",
+                durability: 65,
+                enhancement: 18
+            }
+            const expected = {
+                name: "sword",
+                durability: 55,
+                enhancement: 17
+            }
+            const actual = enhancer.fail(item)
+            expect(actual).toStrictEqual(expected)
+        });
     });
 })
